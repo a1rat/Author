@@ -1,0 +1,78 @@
+public class Author {
+    private String firstName;
+    private String secondName;
+    private String patronymicName;
+
+    public class Book {
+        private String title;
+
+        public Book(String title) {
+            this.title = title;
+        }
+
+        public String getInfo() {
+            return getTitle() + " " + getFullName();
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            Check1.check(title);
+            this.title = title;
+        }
+    }
+
+    public Author(String firstName, String secondName, String patronymicName) {
+        setFirstName(firstName);
+        setSecondName(secondName);
+        setPatronymicName(patronymicName);
+    }
+
+    public String getFullName() {
+        return getFirstName() + " " + getSecondName() + " " + getPatronymicName();
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        Check1.check(firstName);
+        this.firstName = firstName;
+    }
+
+    public String getSecondName() {
+        return secondName;
+    }
+
+    public void setSecondName(String secondName) {
+        Check1.check(secondName);
+        this.secondName = secondName;
+    }
+
+    public String getPatronymicName() {
+        return patronymicName;
+    }
+
+    public void setPatronymicName(String patronymicName) {
+        Check1.check(patronymicName);
+        this.patronymicName = patronymicName;
+    }
+}
+
+class Check1 {
+    public static void check(String o) {
+        if (o == null || o.length() < 2) {
+            throw new IllegalArgumentException();
+        }
+        char[] c = o.toCharArray();
+        for (int i = 0; i < c.length; i++) {
+            if ((int) c[0] < 65 && (int) c[0] > 122) {
+                throw new IllegalArgumentException();
+            }
+        }
+
+    }
+}
